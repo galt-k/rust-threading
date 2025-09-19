@@ -5,14 +5,16 @@ use std::time::Duration;
 pub fn main() -> Arc<Mutex<Vec<String>>> {
 
     let booked_seats = Arc::new(Mutex::new(Vec::new()));
-    let seat_count = Arc::new(Mutex::new(2));
+    // declaring only one seatcount
+    let seat_count = Arc::new(Mutex::new(1));
 
     let mut handles = vec![]; 
 
-    //declare the write lock here
+    //declare the write lock here 
     let write_latch =  Arc::new(RwLock::new(()));
 
-    for user_id in ["A", "B", "C"]{
+    // 
+    for user_id in ["A", "B"]{
         let booked_seats = Arc::clone(&booked_seats);
         let seat_count = Arc::clone(&seat_count); 
         let write_latch = Arc::clone(&write_latch);
@@ -22,11 +24,12 @@ pub fn main() -> Arc<Mutex<Vec<String>>> {
 
             // check if the seatcount is > 0
             // add the write lock here 
+            let _guard = write_latch.write().unwrap();
             
             // get the count of the seats
             let count = *seat_count.lock().unwrap();
             
-            let _guard = write_latch.write().unwrap();
+            
             
             println!("current Seat count - {:?}", count);
 
@@ -69,7 +72,7 @@ mod tests {
         let result = main();
         //let v1: Vec<&str> = vec!["A"];
         let mut expected: Vec<String> = vec!["A".to_string()];
-        expected.push("B".to_string());
+        //expected.push("B".to_string());
         print!("result is {:?}", result);
         let result_locked = result.lock().unwrap();
         // check if the booked seats have both A and B? 

@@ -1,0 +1,51 @@
+Await: Don't run the following instructions until its returns the required output type. 
+
+Future: 
+A future describes a series of steps that will be executed at somepoint in the future. 
+A future does nothing until it is awaited. 
+A future is something that doesnt run the whole instructions once, but also describes how to try again later. 
+Best suited for Chunked computations. 
+Primarily IO, netowkring, disk, timers. 
+Any reason to wait for something. 
+
+Ex: DISK-> why its waiting on disk, it allows to run something else. 
+
+Async:
+Async isnt magical, it just descirbes the coperative scheduling between different computational operations. 
+Async lets you chunk computation. 
+It runs, until it has to wait. 
+Under what circumstances it has to yield, and when it has to run. 
+
+If I dont run I let decide who is above me to run anything else. 
+
+Cancellation:
+1. If you dont want a future to run, then you can describe the circumstances on how to cancel a future. 
+
+Executors:
+1. Polls future in a loop and does nothing else. 
+2. Tokio is an executor crate. 
+
+Select!:
+1. This is similar to event loop in python. 
+
+Standard file function or other libraries will not work for async operations.   
+
+Co-operative scheduling:
+1. Other things get to run only when the current running computation yields.  
+
+Spawn blocking:
+1. Can be used to solve problems of un-ending future. 
+
+Fuse futures:
+1. Its safe to wait a future, even if that future is already completed in the past. 
+
+Questions:
+1. How bad of performance hit is to use async when you dont call any async stuff down the line? 
+2. Difference between slect and join? 
+
+Join:
+1. Run all the operations concurrently. Once theyare completed, give the outputs from all the futures. 
+2. Ex-> join!(files[0], files[1], files[2])
+
+Parallelism and spawning:
+1. 

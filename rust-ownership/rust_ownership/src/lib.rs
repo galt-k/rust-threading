@@ -1,6 +1,8 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+pub fn get_length(str_: String) -> usize {
+    println!("{} inside the function", str_);
+    str_.len()
 }
+
 
 #[cfg(test)]
 mod tests {
@@ -8,7 +10,9 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        let sample_string = String::from("Hello");
+        let result = get_length(sample_string);
+        assert_eq!(result, 5, "Values doesn't match");
+        //println!("{} outside the function", sample_string);
     }
 }

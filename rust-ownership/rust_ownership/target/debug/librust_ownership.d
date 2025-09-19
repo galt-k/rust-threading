@@ -1,0 +1,1 @@
+/Users/revanthkatanguri/Projects/rust-threading/rust-ownership/rust_ownership/target/debug/librust_ownership.rlib: /Users/revanthkatanguri/Projects/rust-threading/rust-ownership/rust_ownership/src/lib.rs

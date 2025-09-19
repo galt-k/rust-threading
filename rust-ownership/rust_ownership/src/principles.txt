@@ -1,0 +1,11 @@
+Important concepts of RUST:
+
+Ownership: 
+
+    1.  Every Value has a single owner.
+    2.  Owner manages the value's memory, and when the owner goes out of the scope, 
+        Rust automatically cleans up the memory. 
+
+Borrowing: 
+
+    1. Access the value using a refernce without taking ownership. 

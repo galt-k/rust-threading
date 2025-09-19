@@ -1,0 +1,10 @@
+/Users/revanthkatanguri/Projects/rust-threading/tokio-test/target/debug/deps/liblock_api-e472e8e03d841729.rmeta: /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/lib.rs /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/mutex.rs /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/remutex.rs /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/rwlock.rs
+
+/Users/revanthkatanguri/Projects/rust-threading/tokio-test/target/debug/deps/liblock_api-e472e8e03d841729.rlib: /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/lib.rs /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/mutex.rs /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/remutex.rs /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/rwlock.rs
+
+/Users/revanthkatanguri/Projects/rust-threading/tokio-test/target/debug/deps/lock_api-e472e8e03d841729.d: /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/lib.rs /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/mutex.rs /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/remutex.rs /Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/rwlock.rs
+
+/Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/lib.rs:
+/Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/mutex.rs:
+/Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/remutex.rs:
+/Users/revanthkatanguri/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.13/src/rwlock.rs:
