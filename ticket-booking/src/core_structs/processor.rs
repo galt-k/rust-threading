@@ -1,3 +1,5 @@
+use std::sync:{Arc, Mutex};
+use super::core_structs::base::BookingRequest;
 /// Do we need Arc Mutex for booking request? 
 /// Multiple threads can be accessing Booking request.
 /// Ex- Request processor can be accessing it and there can be another thread which might be accessing to know the status. 
@@ -16,9 +18,17 @@ pub struct RequestProcessor {
 
 
 impl Processortrait for RequestProcessor {
-    pub fn new(booking_request: &mut BookingRequest) -> Self {
+    pub fn new(booking_request: Arc<BookingRequest>, concert: Arc<Concert> ) -> Self {
         // pass the booking request 
-
+        // here I will have a mutable reference to booking request. 
+        // Do i need to put mutex here even though all the attributes are made thread safe in BookingRequest?
+        // I also need to have an immutable refernce to concert? 
+        // I dont want request processoe to lock the whole booking request struct. 
+        // I already ensure that individual attributes are thread safe. 
+        RequestProcessor {
+            booking_request: booking_request,
+            concert: concert
+        }
     }
     
     // here we would need life times??

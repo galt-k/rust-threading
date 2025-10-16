@@ -5,4 +5,5 @@ pub mod core_structs;
 #[cfg(test)]
 mod tests {
     mod worker_tests;
+    mod base_tests;
 }
