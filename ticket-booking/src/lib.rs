@@ -6,4 +6,5 @@ pub mod core_structs;
 mod tests {
     mod worker_tests;
     mod base_tests;
+    mod processor_tests;
 }

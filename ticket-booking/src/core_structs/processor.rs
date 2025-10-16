@@ -1,10 +1,11 @@
-use std::sync:{Arc, Mutex};
-use super::core_structs::base::BookingRequest;
+use std::sync::{Arc, Mutex, RwLock};
+use crate::core_structs::base::{BookingRequest, Venue, Concert};
 /// Do we need Arc Mutex for booking request? 
 /// Multiple threads can be accessing Booking request.
 /// Ex- Request processor can be accessing it and there can be another thread which might be accessing to know the status. 
-pub trait Processortrait {
-    fn process_request(&mut self) -> &BookingRequest
+pub trait ProcessorTrait {
+    fn new(booking_request: Arc<RwLock<BookingRequest>>, concert: Arc<Concert> ) -> Self;
+    fn process_request(&self) -> bool;
 }
 
 // I wanted a shared ownership of Booking request and Concert
@@ -12,13 +13,13 @@ pub trait Processortrait {
 // So, i'm dealing with a refences here. Both BookingRequest and Concert
 // Shouldnt I think about adding lifetime annotations for these on Request processorstruct?
 pub struct RequestProcessor {
-    pub booking_request: Arc<BookingRequest>,  
+    pub booking_request: Arc<RwLock<BookingRequest>>,  
     pub concert: Arc<Concert> 
 }
 
 
-impl Processortrait for RequestProcessor {
-    pub fn new(booking_request: Arc<BookingRequest>, concert: Arc<Concert> ) -> Self {
+impl ProcessorTrait for RequestProcessor {
+    fn new(booking_request: Arc<RwLock<BookingRequest>>, concert: Arc<Concert> ) -> Self {
         // pass the booking request 
         // here I will have a mutable reference to booking request. 
         // Do i need to put mutex here even though all the attributes are made thread safe in BookingRequest?
@@ -37,28 +38,32 @@ impl Processortrait for RequestProcessor {
     // it wont return any refernce.
     // True
     // So, i'm dealing with a refernce here
-    pub fn process_request(&self) -> bool {
+    fn process_request(&self) -> bool {
         // check if all the seats are avaialble or not. 
         // TODO: Will update this later 
         let result: bool = true;  
 
         // if the seat_check avilability returns True then follow the next step
         match result {
-            true {
+            true => {
                 // Change the seat status to "Booked"
                 // TODO
                 // Change the booking sttaus to "CONFIRMED" 
                 // Here to update the status, you need to get the lock guard.
                 // that when you will have the mutable refernce. 
-                let mut mutex_guard = self.booking_request.status.lock.unwrap();
-                *mutex_guard = BookingStatus.CONFIRMED; 
+                // let mut mutex_guard = self.booking_request.status.lock.unwrap();
+                // *mutex_guard = BookingStatus.CONFIRMED;   
+                let mut request = self.booking_request.write().unwrap();             
+                request.change_to_confirmed()
             }
-            false { 
+            false => { 
                 //Acquire the lock and Change the booking status to Cancelled 
-                let mut mutex_guard = self.booking_request.status.lock.unwrap();
-                *mutex_guard = BookingStatus.CANCELLED; 
+                //let mut mutex_guard = self.booking_request.status.lock.unwrap();
+                //*mutex_guard = BookingStatus.CANCELLED; 
+                let mut request = self.booking_request.write().unwrap(); 
+                request.change_to_cancelled()
             }
-        }
+        };
         // else return Booking request status to Cancelled
         true
 

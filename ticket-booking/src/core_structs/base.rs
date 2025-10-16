@@ -24,14 +24,43 @@ pub struct Concert {
     pub artist: Arc<Artist> 
 }
 
+impl Concert {
+    pub fn new(name: String, datetime: String, venue: Arc<Venue>, artist: Arc<Artist>)-> Self {
+        Concert {
+            name: name,
+            date_time: datetime,
+            tickets_sold: 0,
+            venue: venue,
+            artist: artist
+        }
+    }
+}
+
 pub struct Artist {
     pub name: String
+}
+
+impl Artist {
+    pub fn new(name: String)-> Self{
+        Artist {
+            name: name
+        }
+    }
 }
 
 /// I'm not adding any mutext to seating plan, but adding at the concert level. 
 pub struct Venue {
     pub location: String, 
     pub seating_plan:  Arc<Mutex<HashMap<String, Seat>>> // A map kind of data structure 
+}
+
+impl Venue {
+    pub fn new(location: String, seating_plan: Arc<Mutex<HashMap<String, Seat>>> ) -> Self {
+        Venue {
+            location: location,
+            seating_plan: seating_plan
+        }
+    }
 }
 
 pub struct User {
@@ -81,6 +110,14 @@ impl BookingRequest {
         true
     }
 
+    pub fn change_to_cancelled(&mut self)-> bool {
+        // you have to lock and update the status 
+        let mut writeguard = self.status.write().unwrap();
+        *writeguard = BookingStatus::CANCELLED;
+        true
+    }
+
+
     // my return value should be tied to booking request struct
     // is it possible without returning the guard? 
     // instead of retuning the guard, i can also return the arc clone of the status?
@@ -92,8 +129,18 @@ impl BookingRequest {
 
 pub struct Seat {
     pub row: String,
-    pub number: i32,
+    pub number: String,
     pub status: SeatStatus//Enum type
+}
+
+impl Seat {
+    pub fn new(row: String, number: String, status: SeatStatus) -> Self {
+        Seat {
+            row: row,
+            number: number,
+            status: status
+        }
+    }
 }
 
 pub enum SeatStatus {
@@ -102,7 +149,7 @@ pub enum SeatStatus {
     HOLD = 2
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub enum BookingStatus {
     CREATED = 0,
     WAITONPAYMENT = 1, 
@@ -125,7 +172,6 @@ pub struct SearchCriteria {
 /// We  
 pub trait Schuedulertrait {
     fn submit_request(&mut self, booking_request: &mut BookingRequest) -> &BookingRequest; 
-
 }
 
 // // All the thread level code should be here 

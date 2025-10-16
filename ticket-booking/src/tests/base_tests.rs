@@ -25,7 +25,7 @@ mod tests {
         booking_req.change_to_confirmed();
         let readlockguard = booking_req.get_status();
 
-        // aseert that the status is created?
+        // assert that the status is created?
         assert_eq!(*readlockguard, BookingStatus::CONFIRMED);
     }
 
