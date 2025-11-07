@@ -25,7 +25,7 @@ mod tests {
         /// Create the worker manager
         let test_worker_manager = Arc::new(Mutex::new(WorkerManager::new()));
         /// Create 5 workers.
-        /// Each worker requires a Arc mutex refernce of Worker manager. 
+        /// Each worker requires a Arc mutex reference of Worker manager. 
         for _ in 0..5 {
             let test_manager_clone = test_worker_manager.clone();
             Worker::new(test_manager_clone);
